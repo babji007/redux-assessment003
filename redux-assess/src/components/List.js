@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import CommButtons from "./CommButtons.js";
+import DisplayCard from "./DisplayCard.js";
 import Input from "./Input.js";
-// import Modal from "./Modal.js";
-import "./Input.css";
+import content from "../mock/mock";
+import "./styles/Input.css";
 
 class List extends Component {
   constructor(props) {
@@ -20,25 +20,31 @@ class List extends Component {
     };
   }
 
-  editItem(index) {
+  editItem=(index)=>{
     this.setState({
       requiredItem: index,
     });
   }
 
-  saveDetails(item) {
+  saveDetails=(item)=> {
     const requiredItem = this.state.requiredItem;
     let templist = this.state.list;
     templist[requiredItem] = item;
     this.setState({ list: templist });
   }
 
-  deleteItem(index) {
+  deleteItem=(index)=> {
     let templist = this.state.list;
     templist.splice(index, 1);
     this.setState({ list: templist });
   }
   handleSubmit = (event) => {
+    // var todo = event.target.value
+    // todo.id = Math.random();
+    // let todos = [...this.state.list, todo];
+    // this.setState({
+    //   list: todos,
+    //   })
     var taskLen = event.target.elements.msg.value;
     if (taskLen.length > 0) {
       this.setState({
@@ -50,22 +56,25 @@ class List extends Component {
   };
   render() {
     return (
-      <div>
-        <div style={{ marginLeft: 400 }}>
+      <div style={{backgroundColor:'#f1181850'}}>
+        <div style={{ marginLeft: 400 , backgroundColor:'#f1181850'}}>
           <div>
-            <h1>Todo List with Modal Popup In React</h1>
+            <h1 className='todo'>Todo List with Modal Popup In React</h1>
           </div>
-          <div>
-            <Input onSubmit={(event) => this.handleSubmit(event)} />
+          <div >
+            <Input onSubmit={this.handleSubmit} id="input" />
           </div>
           <br />
-          <div>
-            <CommButtons
+         
+          <div >
+            <DisplayCard
+              id="button"
               list={this.state.list}
-              Bonedit={(event) => this.editItem(event)}
-              Bondel={(event) => this.deleteItem(event)}
+              Bonedit={this.editItem}
+              Bondel={this.deleteItem}
               requiredItem={this.state.requiredItem}
-              BsaveDetails={(event) => this.saveDetails(event)}
+              BsaveDetails={this.saveDetails}
+              Content={this.props.content}
             />
           </div>
         </div>
@@ -73,5 +82,8 @@ class List extends Component {
     );
   }
 }
+List.defaultProps = {
+  content: content,
+};
 
 export default List;

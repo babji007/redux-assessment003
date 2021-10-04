@@ -14,9 +14,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 function App() {
   return (
-    <Provider store={Store}>
+    
       <Router>
-      <div class="App">
+      <div class="App" >
         <Header/>
         {/* <Sys /> */}
         {/* <List /> */}
@@ -27,7 +27,7 @@ function App() {
         <Footer/>
       </div>
       </Router>
-    </Provider>
+    
   );
 }
 

@@ -1,24 +1,24 @@
 import React from "react";
 
-
 // import { connect } from 'react-redux';
 
 export default class Button extends React.Component {
   Rchange(event) {
+    // var x = event.target.value
     this.props.hanonChange(event);
   }
   render() {
-    let Rbutton = this.props.regions;
+    let data = this.props.data;
     let label = this.props.name;
     return (
       <div>
-        <label>{label} </label>
+        <label>{label} :   </label>
         <select
           onChange={(event) => {
             this.Rchange(event);
           }}
         >
-          {Rbutton.map((x, key) => {
+          {data.map((x, key) => {
             return <option key={key}>{x.ability.name}</option>;
           })}
         </select>

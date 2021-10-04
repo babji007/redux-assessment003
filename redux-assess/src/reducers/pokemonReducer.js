@@ -1,13 +1,13 @@
 const initial_state = {
-    countries: [], 
+    res: [], 
     error:null
 }
 const regionReducer = (state = initial_state, action) => {
     switch (action.type ) {
-        case "FETCH_COUNTRIES":
+        case "FETCH_ABILITIES":
         return {
             ...state,
-            countries: action.payload
+            res: action.payload
         }
         case "INVALID_REQST":
             return {

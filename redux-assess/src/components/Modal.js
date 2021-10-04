@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import content from "../mock/mock";
+import Button from "./Button";
+// import "./styles/Popup.css";
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class Modal extends Component {
     });
   }
 
-  msgHandler(e) {
+  msgHandler=(e)=> {
     this.setState({ msg: e.target.value });
   }
 
@@ -23,7 +25,6 @@ class Modal extends Component {
     const item = this.state.msg;
     this.props.saveDetails(item);
   }
-
   render() {
     return (
       <div>
@@ -35,8 +36,11 @@ class Modal extends Component {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-           <div class="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div
+              className="modal-content"
+              style={{ backgroundColor: "rgb(138,206,218)" }}
+            >
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
                   Edit todo
@@ -56,13 +60,16 @@ class Modal extends Component {
                   <span className="modal-lable">Msg:</span>
                   <input
                     value={this.state.msg}
-                    onChange={(e) => this.msgHandler(e)}
+                    name="msg"
+                    id="msg"
+                    onChange={this.msgHandler}
                   />
                 </p>
               </div>
               <div className="modal-footer">
                 <button
                   type="button"
+                  id="close"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
@@ -71,10 +78,10 @@ class Modal extends Component {
                 <button
                   type="button"
                   className="btn btn-primary"
+                  id="save"
                   data-dismiss="modal"
-                  onClick={() => {
-                    this.handleSave();
-                  }}
+                  onClick={
+                    this.handleSave}
                 >
                   Save changes
                 </button>

@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
+import Button from "./Button";
 
-export default class Buttons extends React.Component {
+export default class DisplayCard extends React.Component {
   constructor(props) {
     super(props);
 
     this.saveDetails = this.saveDetails.bind(this);
   }
 
-  deleteItem(index) {
-    this.props.Bondel(index);
+  deleteItem=(event)=> {
+    this.props.Bondel(event);
   }
-  editItem(index) {
-    this.props.Bonedit(index);
+  editItem(event) {
+    this.props.Bonedit(event);
   }
   saveDetails(item) {
     this.props.BsaveDetails(item);
@@ -28,20 +29,23 @@ export default class Buttons extends React.Component {
             >
               <p class="mb-1">{item}</p>
               <div style={{ textAlign: "end" }}>
-                <button
-                  className="btn btn-success"
+                <div
+                  className="col-sm-8"
                   data-toggle="modal"
                   data-target="#exampleModal"
-                  onClick={() => this.editItem(index)}
                 >
-                  edit
-                </button>{" "}
-                <button
-                  className="btn btn-danger"
-                  onClick={() => this.deleteItem(index)}
-                >
-                  remove
-                </button>
+                  <Button
+                    label3={this.props.Content.label3}
+                    ButtonItem={() => this.editItem(index)}
+                  />
+                </div>{" "}
+                <div>
+                  <Button
+                    
+                    label3={this.props.Content.label4}
+                    ButtonItem={()=>this.deleteItem(index)}
+                  />
+                </div>
               </div>
             </a>
           </div>

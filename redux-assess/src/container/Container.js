@@ -2,17 +2,17 @@ import React from "react";
 
 import { connect } from "react-redux";
 import Dropdown from '../components/Dropdown'
-import { getCountries } from "../actions/fetchCountries";
+import { fetchabilities } from "../actions/fetchAbilities";
 
 
     const mapStateToProps = (state) => {
         return {
-          countries: state.event.countries,
-          error: state.event.error,
+          res: state.res,
+          error: state.error,
         };
       };
       const mapDispatchProps = (dispatch) => ({
-        getCountries: (region) => dispatch(getCountries(region)),
+        fetchabilities: (pokemon) => dispatch(fetchabilities(pokemon)),
       });
       
       export default connect(mapStateToProps, mapDispatchProps)(Dropdown);

@@ -1,58 +1,62 @@
 import React from "react";
+import Buttons from "./SelButtons";
+import Popup from "./Popup.js";
 
-import { connect } from "react-redux";
-import { getCountries } from "../actions/fetchCountries.js";
-import Buttons from "./Buttons";
-
-
-// import './container'
 export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      regions: [],
-      country: [],
-      selectedRegion: "",
-      selectedCountry: "",
-      isOpen:true,
+      isOpen: true,
     };
   }
-  componentDidMount() {
-    this.props.getCountries(this.props.Content.regions[0].ability.name);
-  }
+  // componentDidMount() {
+  //   this.props.fetchabilities(this.props.content.pokemon[0].ability.name);
+  // }
 
-  changeRegion(event) {
-    var newRegion = event.target.value;
-    this.setState({ selectedRegion: newRegion });
-    console.log(newRegion);
-    this.props.getCountries(newRegion);
+  changePokemon=(event)=>{ {
+    var pokemon = event.target.value;
+    console.log(pokemon);
+    // this.setState({ isOpen: !this.state.isOpen });
+    this.props.fetchabilities(pokemon);
   }
-  
+}
+  togglePopup = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
   render() {
     return (
       <div style={{ marginLeft: 200 }}>
-        <h1>{this.props.Content.heading}</h1>
+        <h1>{this.props.content.heading}</h1>
         <div className="dropdown">
           <Buttons
-            regions={this.props.Content.regions}
-            name={this.props.Content.region}
-            hanonChange={(name) => {
-              this.changeRegion(name);
-            }}
+            id="button"
+            className="first"
+            data={this.props.content.pokemon}
+            name={this.props.content.label1}
+            hanonChange={this.changePokemon}
           />
-          <br />
-          <br />
-          <Buttons regions={this.props.countries} name={this.props.Content.country}/>
         </div>
-        {this.props.error &&
-          <p className="error">
-           something went wrong .{" "}
-          </p>
-        }
+        <br />
+        <br />
+        <div>
+          <Buttons data={this.props.res} name={this.props.content.label2} />
+        </div>
+        {this.props.error && this.state.isOpen && (
+          <Popup
+            content={
+              <>
+                <b>ERROR</b>
+                <br />
+                <hr />
+                <br />
+                <b>Might, need to check api call.</b>
+              </>
+            }
+            handleClose={this.togglePopup}
+          />
+        )}
       </div>
     );
   }
 }
-
-
-

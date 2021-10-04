@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import countryReducer from './regionReducer';
+import countryReducer from './pokemonReducer';
 export default combineReducers({
     event: countryReducer,
    
