@@ -19,7 +19,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 // import index from "./index";
 import thunk from "redux-thunk";
-import Store from "./Store/Store";
+import Store from "../src/App/src/Store/Store";
 import { Provider } from "react-redux";
 
 jest.mock("react-dom", () => ({ render: jest.fn() }));

@@ -1,8 +1,4 @@
 import "./App.css";
-import { Provider } from "react-redux";
-import Sys from "../src/components/sys";
-import Store from "./Store/Store";
-import List from '../src/components/List';
 import {
   BrowserRouter as Router,
   HashRouter,
@@ -10,8 +6,10 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./App/src/components/Header";
+import Footer from "./App/src/components/Footer";
+import Sys from "./App/src/components/sys";
+import List from "./App/src/components/List";
 function App() {
   return (
     
